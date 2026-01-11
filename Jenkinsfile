@@ -15,14 +15,14 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                dir('miniProjetDevOps') {
+                dir('MyApp') {
                     sh 'mvn clean package'
                 }
             }
         }
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'miniProjetDevOps/target/*.jar', allowEmptyArchive: false
+                archiveArtifacts artifacts: 'MyApp/target/*.jar', allowEmptyArchive: false
             }
         }
         stage('Deploy') {
