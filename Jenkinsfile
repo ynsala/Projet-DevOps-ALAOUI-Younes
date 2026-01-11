@@ -15,14 +15,14 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                dir('miniProjetDevOps') {
+                dir('MyApp') {
                     sh 'mvn clean package'
                 }
             }
         }
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'miniProjetDevOps/target/*.jar', allowEmptyArchive: false
+                archiveArtifacts artifacts: 'MyApp/target/*.jar', allowEmptyArchive: false
             }
         }
         stage('Deploy') {
@@ -34,7 +34,7 @@ pipeline {
     
     post {
         always {
-            echo 'Pipeline terminé.'
+            echo 'Pipeline terminé.'   
         }
         success {
             slackSend channel: '#notifications-jenkins', color: 'good', message: "Succès du Pipeline: ${env.JOB_NAME} [Build #${env.BUILD_NUMBER}]"
