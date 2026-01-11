@@ -34,7 +34,7 @@ pipeline {
     
     post {
         always {
-            echo 'Pipeline terminé.'
+            echo 'Pipeline terminé.'   
         }
         success {
             slackSend channel: '#notifications-jenkins', color: 'good', message: "Succès du Pipeline: ${env.JOB_NAME} [Build #${env.BUILD_NUMBER}]"
